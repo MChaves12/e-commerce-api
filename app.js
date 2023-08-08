@@ -1,17 +1,26 @@
+//packges
 require('dotenv/config');
+require('express-async-errors');
 
+//imports
 const express = require('express');
+const errorHandlingMiddleware = require('./middleware/error.handler');
 const app = express();
 
 //db
+require('./db/connect');
 
 //configs
+require('./configs')(app);
+
+//middlewares
+app.use(errorHandlingMiddleware);
 
 //routes
-
-//errors
-app.use((req, res, next) => {
-    res.status(404).json('Not Found!');
+app.get('/', (req, res) => {
+    res.send('E-commerce-api');
 });
+
+require('./middleware/not-found')(app);
 
 module.exports = app;
