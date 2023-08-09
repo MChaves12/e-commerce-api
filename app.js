@@ -13,7 +13,11 @@ require('./db/connect');
 //configs
 require('./configs')(app);
 
+//routers
+const authRouther = require('./routes/authRoutes');
+
 //middlewares
+app.use('/api/v1/auth', authRouther);
 app.use(errorHandlingMiddleware);
 
 //routes
