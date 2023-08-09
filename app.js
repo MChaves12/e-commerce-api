@@ -25,6 +25,12 @@ app.get('/', (req, res) => {
     res.send('E-commerce-api');
 });
 
+app.get('/api/v1', (req, res) => {
+    console.log(req.signedCookies);
+    res.send('E-commerce-api');
+});
+
+
 require('./middleware/not-found')(app);
 
 module.exports = app;
