@@ -24,7 +24,7 @@ const login = async (req, res) => {
   if(!user) {
     throw new CustomError.UnauthenticatedError('Invalid credentials');
   }
-  console.log(user);
+
   const checkPassword = await user.comparePassword(password);
 
   if(!checkPassword) {
@@ -37,7 +37,11 @@ const login = async (req, res) => {
 };
 
 const logout = async (req, res) => {
-  res.send("logout user");
+  res.cookie('token', 'logout', {
+    httpOnly: true,
+    expires: new Date(Date.now())
+  });
+  res.status(StatusCodes.OK).json({msg: 'user logged out!'})
 };
 
 module.exports = {
