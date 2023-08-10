@@ -15,9 +15,12 @@ require('./configs')(app);
 
 //routers
 const authRouther = require('./routes/authRoutes');
+const userRouter = require('./routes/userRoutes');
 
 //middlewares
 app.use('/api/v1/auth', authRouther);
+app.use('/api/v1/users', userRouter);
+
 app.use(errorHandlingMiddleware);
 
 //routes
