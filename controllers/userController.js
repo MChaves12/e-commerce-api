@@ -12,7 +12,7 @@ const getSingleUser = async (req, res) => {
   if(!user){
     throw new CustomErrors.NotFoundError(`No user with id: ${req.params.id}`);
   }
-  res.status(StatusCodes.OK).json({user});
+  res.status(StatusCodes.OK).json(user);
 };
 
 const showCurrentUser = async (req, res) => {
@@ -24,7 +24,22 @@ const updateUser = async (req, res) => {
 };
 
 const updatePassword = async (req, res) => {
-  res.send(req.body);
+  const { oldPassword, newPassword } = req.body;
+  if(!oldPassword || !newPassword) {
+    throw new CustomErrors.BadRequestError('Please provide both values');
+  };
+
+  const user = await User.findOne({_id: req.user.userId});
+  console.log(user)
+  const isPasswordCorrect = await user.comparePassword(oldPassword);
+
+  if(!isPasswordCorrect) {
+    throw new CustomErrors.UnauthenticatedError('Invalid credentials');
+  };
+
+  user.password = newPassword;
+  await user.save();
+  res.status(StatusCodes.OK).json({msg: 'Password updated'});
 };
 
 module.exports = {

@@ -9,11 +9,11 @@ const {
     updatePassword,
 } = require('../controllers/userController');
 
-router.route('/').get(authenticateUser, authorizePermissions('admin'), getAllUsers);
+router.route('/').get(authenticateUser, getAllUsers);
 
 router.route('/showMe').get(authenticateUser, showCurrentUser);
 router.route('/updateUser').patch(updateUser);
-router.route('/updatePassword').patch(updatePassword);
+router.route('/updatePassword').patch(authenticateUser, updatePassword);
 
 router.route('/:id').get(authenticateUser, getSingleUser);
 
