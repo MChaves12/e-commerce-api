@@ -12,7 +12,7 @@ const {
 router.route('/').get(authenticateUser, getAllUsers);
 
 router.route('/showMe').get(authenticateUser, showCurrentUser);
-router.route('/updateUser').patch(updateUser);
+router.route('/updateUser').patch(authenticateUser, updateUser);
 router.route('/updatePassword').patch(authenticateUser, updatePassword);
 
 router.route('/:id').get(authenticateUser, getSingleUser);
