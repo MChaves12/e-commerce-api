@@ -1,6 +1,6 @@
 const { Schema, model, default: mongoose } = require('mongoose');
 
-const productSchema = newSchema ({
+const productSchema = new Schema ({
     name: {
         type: String,
         trim: true,
@@ -16,7 +16,7 @@ const productSchema = newSchema ({
 
     description: {
         type: String,
-        required: [true, 'Please provide a product name'],
+        required: [true, 'Please provide a product description'],
         maxlength: [1000, 'Name can not be more than 1000 caracteres']
     },
 
@@ -33,6 +33,7 @@ const productSchema = newSchema ({
 
     colors: {
         type: [String],
+        default:['#222'],
         required: true,
     },
 
