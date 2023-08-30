@@ -1,6 +1,6 @@
 const { Schema, model, default: mongoose, mongo } = require('mongoose');
 
-const singleCartItemSchema = new Schema({
+const singleOrderItemSchema = new Schema({
     name: {
         type: String,
         required: true,
@@ -34,7 +34,7 @@ const orderSchema = new Schema ({
         required: true,
     },
 
-    shippiongFess: {
+    shippingFee: {
         type: Number,
         required: true,
     },
@@ -49,7 +49,7 @@ const orderSchema = new Schema ({
         required: true,
     },
 
-    cartItems: [],
+    orderItems: [singleOrderItemSchema],
 
     status: {
         type: String,
