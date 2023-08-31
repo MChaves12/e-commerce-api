@@ -42,7 +42,7 @@ For a full list of API endpoints and their details, refer to the documentation.
 
 ## Documentation
 
-The detailed API documentation can be found .
+For now the detailed API documentation can be accessed after you start the app.
 
 ## Contributing
 
