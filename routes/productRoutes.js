@@ -8,6 +8,7 @@ const {
 const {
   createProduct,
   getAllProducts,
+  getAllProductsByCategory,
   getSingleProduct,
   updateProduct,
   deleteProduct,
@@ -20,6 +21,8 @@ router
   .route("/")
   .post([authenticateUser, authorizePermissions("admin")], createProduct)
   .get(getAllProducts);
+
+router.route('/:category').get(getAllProductsByCategory);
 
 router
   .route("/uploadImage")

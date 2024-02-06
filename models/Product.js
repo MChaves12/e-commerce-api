@@ -22,13 +22,13 @@ const productSchema = new Schema ({
 
     image: {
         type: String,
-        default: '/uploads/example.jpeg'
+        default: '/uploads/example.jpg'
     },
 
     category: {
         type: String,
         required: [true, 'Please provide product category'],
-        enum: ['office', 'kitchen', 'bedroom']
+        enum: ['office', 'kitchen', 'bedroom', 'prata', 'ouro']
     },
 
     colors: {

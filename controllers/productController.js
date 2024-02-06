@@ -14,6 +14,13 @@ const getAllProducts = async (req, res) => {
     res.status(StatusCodes.OK).json({ products, count: products.length }).populate({path:'reviews'});
 };
 
+const getAllProductsByCategory = async (req, res) => {
+    const {category: cat} = req.params;
+
+    const products = await Product.find({category: cat});
+    res.status(StatusCodes.OK).json({ products, count: products.length }).populate({ path: 'reviews'})
+}
+
 const getSingleProduct = async (req, res) => {
     const {id: productId} = req.params;
 
@@ -77,6 +84,7 @@ const uploadImage = async (req, res) => {
 module.exports = {
     createProduct,
     getAllProducts,
+    getAllProductsByCategory,
     getSingleProduct,
     updateProduct,
     deleteProduct,
